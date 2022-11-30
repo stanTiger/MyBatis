@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--    读取jdbc.properties配置文件-->
+    <properties resource="jdbc.properties"/>
+    
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+    </settings>
+    
+    <!--    设置类型别名-->
+    <typeAliases>
+        <package name="com.stan.mybatis.pojo"/>
+    </typeAliases>
+
+
+
+    <!--设置连接数据库的环境-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.dev.driver}"/>
+                <property name="url" value="${jdbc.dev.url}"/>
+                <property name="username" value="${jdbc.dev.username}"/>
+                <property name="password" value="${jdbc.dev.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--引入映射文件-->
+    <mappers>
+        <package name="com.stan.mybatis.mapper"/>
+    </mappers>
+</configuration>
